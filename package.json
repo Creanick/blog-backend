@@ -1,0 +1,19 @@
+{
+  "name": "blog-backend",
+  "version": "1.0.0",
+  "description": "It can be use as a backend api blog server and we use frontend with it to create blog website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Creanick/blog-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Creanick/blog-backend/issues"
+  },
+  "homepage": "https://github.com/Creanick/blog-backend#readme"
+}
