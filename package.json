@@ -4,7 +4,8 @@
   "description": "It can be use as a backend api blog server and we use frontend with it to create blog website",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/Creanick/blog-backend/issues"
   },
-  "homepage": "https://github.com/Creanick/blog-backend#readme"
+  "homepage": "https://github.com/Creanick/blog-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  }
 }
