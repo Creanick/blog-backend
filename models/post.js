@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const { defaultAuthor } = require("../config");
 const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
@@ -18,7 +18,7 @@ const PostSchema = new Schema({
   },
   author: {
     type: String,
-    default: "Manick Lal Jamadar"
+    default: defaultAuthor
   },
   createdDate: {
     type: String,
