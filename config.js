@@ -16,6 +16,8 @@ if (!validateEnv(dbName, dbUser, dbPassword)) {
 }
 
 module.exports = {
+  defaultPort,
+  defaultAuthor: "Manick Lal Jamadar",
   port,
   dbName,
   dbUser,
