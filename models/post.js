@@ -21,7 +21,7 @@ const PostSchema = new Schema({
     default: defaultAuthor
   },
   createdDate: {
-    type: String,
+    type: Date,
     default: Date.now
   }
 });
