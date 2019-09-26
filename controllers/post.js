@@ -2,8 +2,17 @@ const Post = require("../models/post");
 const mongoose = require("mongoose");
 const postResultify = require("../utils/postResultify");
 const ObjectId = mongoose.Types.ObjectId;
-exports.getPost = (req, res, next) => {
-  res.send("get post");
+const BlogError = require("../utils/BlogError");
+exports.getPost = async (req, res, next) => {
+  try {
+    const post = await Post.findById(ObjectId(req.postId));
+    if (!post) {
+      return next(new BlogError("Post not found", 404));
+    }
+    res.send(postResultify(post));
+  } catch (err) {
+    next(err);
+  }
 };
 
 exports.getPosts = (req, res, next) => {

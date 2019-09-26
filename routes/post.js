@@ -8,9 +8,9 @@ const {
   searchPosts,
   updatePost
 } = require("../controllers/post");
-
+const postIdValidation = require("../middlewares/postIdValidation");
 //Get single post by id
-router.get("/post/:id", getPost);
+router.get("/post/:id", postIdValidation, getPost);
 
 //Get multiple post
 router.get("/posts/:page", getPosts);

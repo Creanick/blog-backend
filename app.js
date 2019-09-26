@@ -14,8 +14,11 @@ app.use((err, req, res, next) => {
   devRun(() => {
     console.log("Error: ", err.message);
   });
-  res
-    .status(err.status || 500)
-    .send(err instanceof BlogError ? err.message : "Something went wrong");
+  const errorMessage =
+    err instanceof BlogError ? err.message : "Something went wrong";
+  res.status(err.status || 500).send({
+    error: true,
+    message: errorMessage
+  });
 });
 module.exports = app;
