@@ -3,11 +3,12 @@ const mongoose = require("mongoose");
 const postResultify = require("../utils/postResultify/postResultify");
 const ObjectId = mongoose.Types.ObjectId;
 const BlogError = require("../utils/BlogError");
+const ErrorMessages = require("../ErrorMessages");
 exports.getPost = async (req, res, next) => {
   try {
     const post = await Post.findById(ObjectId(req.postId));
     if (!post) {
-      return next(new BlogError("Post not found", 404));
+      return next(new BlogError(ErrorMessages.postNotFound, 404));
     }
     res.send(postResultify(post));
   } catch (err) {
