@@ -1,6 +1,6 @@
 const Post = require("../models/post");
 const mongoose = require("mongoose");
-const postResultify = require("../utils/postResultify");
+const postResultify = require("../utils/postResultify/postResultify");
 const ObjectId = mongoose.Types.ObjectId;
 const BlogError = require("../utils/BlogError");
 exports.getPost = async (req, res, next) => {
