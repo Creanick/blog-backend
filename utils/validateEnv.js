@@ -1,6 +1,6 @@
 function validateEnv(...variables) {
   for (let vars of variables) {
-    if (vars === "undefined" || typeof vars !== "string" || vars.length === 0) {
+    if (!vars || typeof vars !== "string") {
       return false;
     }
   }
