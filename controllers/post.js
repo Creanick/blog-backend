@@ -4,6 +4,7 @@ const postResultify = require("../utils/postResultify/postResultify");
 const ObjectId = mongoose.Types.ObjectId;
 const BlogError = require("../utils/BlogError");
 const ErrorMessages = require("../ErrorMessages");
+const { defaultAuthor } = require("../config");
 exports.getPost = async (req, res, next) => {
   try {
     const post = await Post.findById(ObjectId(req.postId));
@@ -21,7 +22,7 @@ exports.getPosts = (req, res, next) => {
 };
 
 exports.addPost = async (req, res, next) => {
-  const { title, content, author = "Manick Lal Jamadar" } = req.body;
+  const { title, content, author = defaultAuthor } = req.body;
   const post = new Post({
     _id: ObjectId(),
     title,
