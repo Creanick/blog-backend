@@ -1,6 +1,6 @@
 const Post = require("../models/post");
 const mongoose = require("mongoose");
-const postResultify = require("../utils/postResultify/postResultify");
+const postResultify = require("../utils/postResultify");
 const ObjectId = mongoose.Types.ObjectId;
 const BlogError = require("../utils/BlogError");
 const ErrorMessages = require("../ErrorMessages");

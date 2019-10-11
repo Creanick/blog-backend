@@ -1,4 +1,4 @@
-const devRun = require("../../utils/devRun");
+const devRun = require("../devRun");
 
 let nodeEnv = null;
 
@@ -27,4 +27,9 @@ it("test in development environment", () => {
   process.env.NODE_ENV = "development";
   devRun(mock);
   expect(mock).toHaveBeenCalled();
+});
+it("test in development environment with wrong argument", () => {
+  const mock = "manick";
+  process.env.NODE_ENV = "development";
+  expect(() => devRun(mock)).not.toThrow();
 });

@@ -1,4 +1,4 @@
-const BlogError = require("../../utils/BlogError");
+const BlogError = require("../BlogError");
 const ErrorMessages = require("../../ErrorMessages");
 it("should form correctly without message and status", () => {
   const err = new BlogError();

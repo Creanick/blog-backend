@@ -1,4 +1,4 @@
-const validateEnv = require("../../utils/validateEnv");
+const validateEnv = require("../validateEnv");
 
 describe("validate env variables", () => {
   it("should be false for empty vars", () => {
