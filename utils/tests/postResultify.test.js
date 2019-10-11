@@ -1,4 +1,4 @@
-const postResultify = require("../../utils/postResultify/postResultify");
+const postResultify = require("../postResultify");
 
 it("check post resultify ka kamal", () => {
   const result = {
