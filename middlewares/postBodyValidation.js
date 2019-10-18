@@ -1,15 +1,16 @@
 const { body, validationResult } = require("express-validator");
 const BlogError = require("../utils/BlogError");
+const ErrorMessages = require("../ErrorMessages");
 module.exports = [
   body("title")
     .trim()
     .isLength({ min: 5 })
-    .withMessage("title must have more than 5 length")
+    .withMessage(ErrorMessages.title)
     .escape(),
   body("content")
     .trim()
     .isLength({ min: 5 })
-    .withMessage("content must have more than 5 length")
+    .withMessage(ErrorMessages.content)
     .escape(),
   (req, res, next) => {
     const errors = validationResult(req);
