@@ -4,7 +4,7 @@ const postResultify = require("../utils/postResultify");
 const ObjectId = mongoose.Types.ObjectId;
 const BlogError = require("../utils/BlogError");
 const ErrorMessages = require("../ErrorMessages");
-const { defaultAuthor } = require("../config");
+const { defaultAuthor } = require("../settings");
 exports.getPost = async (req, res, next) => {
   try {
     const post = await Post.findById(ObjectId(req.postId));
