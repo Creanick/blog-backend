@@ -4,6 +4,9 @@ class BlogError extends Error {
     super(message);
     this.status = status;
     this.name = "BlogError";
+    if (Array.isArray(message)) {
+      this.message = message;
+    }
   }
 }
 
