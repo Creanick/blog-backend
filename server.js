@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const app = require("./app");
-const { port, dbUrl, dbName } = require("./config");
+const { port, dbUrl, dbName } = require("./server.config");
 
 app.listen(port, () => {
   console.log("server running at %d", port);
