@@ -9,6 +9,7 @@ const {
   updatePost
 } = require("../controllers/post");
 const postIdValidation = require("../middlewares/postIdValidation");
+const postBodyValidation = require("../middlewares/postBodyValidation");
 //Get single post by id
 router.get("/post/:id", postIdValidation, getPost);
 
@@ -16,7 +17,7 @@ router.get("/post/:id", postIdValidation, getPost);
 router.get("/posts/:page", getPosts);
 
 //add post
-router.post("/post", addPost);
+router.post("/post", postBodyValidation, addPost);
 
 //delete post by id
 router.delete("/post/:id", deletePost);
