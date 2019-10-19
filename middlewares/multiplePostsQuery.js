@@ -1,24 +1,25 @@
 const { query, validationResult } = require("express-validator");
 const BlogError = require("../utils/BlogError");
+const ErrorMessages = require("../ErrorMessages");
 module.exports = [
-  query("limit", "limit should be a positive numeric value")
+  query("limit", ErrorMessages.limit)
     .optional()
     .isNumeric()
     .custom((value, { req }) => {
       const limit = parseInt(value);
       if (limit < 1) {
-        throw new Error("limit should be a positive numeric value");
+        throw new Error(ErrorMessages.limit);
       }
       req.limit = limit;
       return true;
     }),
-  query("skip", "skip should be a positive numeric value")
+  query("skip", ErrorMessages.skip)
     .optional()
     .isNumeric()
     .custom((value, { req }) => {
       const skip = parseInt(value);
       if (skip < 0) {
-        throw new Error("skip should be a positive numeric value");
+        throw new Error(ErrorMessages.skip);
       }
       req.skip = skip;
       return true;
