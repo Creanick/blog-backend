@@ -48,8 +48,13 @@ exports.addPost = async (req, res, next) => {
   }
 };
 
-exports.deletePost = (req, res, next) => {
-  res.send("delete post");
+exports.deletePost = async (req, res, next) => {
+  try {
+    await Post.deleteOne({ _id: ObjectId(req.postId) });
+    res.send({
+      message: "Post Deleted Successfully"
+    });
+  } catch (err) {}
 };
 
 exports.updatePost = (req, res, next) => {

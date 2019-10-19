@@ -21,7 +21,7 @@ router.get("/posts", queryValidation, getPosts);
 router.post("/post", postBodyValidation, addPost);
 
 //delete post by id
-router.delete("/post/:id", deletePost);
+router.delete("/post/:id", postIdValidation, deletePost);
 
 //update post by id
 router.patch("/post/:id", updatePost);
