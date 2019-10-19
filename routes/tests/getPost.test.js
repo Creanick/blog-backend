@@ -1,8 +1,11 @@
 const request = require("supertest");
 const app = require("../../app");
 const ErrorMessages = require("../../ErrorMessages");
+const Post = require("../../models/post");
 const settings = require("../../settings");
-
+beforeEach(async () => {
+  await Post.deleteMany({});
+});
 describe("GET /post/:id route testing", () => {
   it("should not found any post", async () => {
     const res = await request(app).get("/post/" + "5da962ebf81cab08de7f164b");
