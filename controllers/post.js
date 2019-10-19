@@ -50,11 +50,14 @@ exports.addPost = async (req, res, next) => {
 
 exports.deletePost = async (req, res, next) => {
   try {
-    await Post.deleteOne({ _id: ObjectId(req.postId) });
-    res.send({
-      message: "Post Deleted Successfully"
-    });
-  } catch (err) {}
+    const result = await Post.findByIdAndDelete(req.postId);
+    if (!result) {
+      return next(new BlogError(ErrorMessages.postNotFound, 404));
+    }
+    res.status(200).send(postResultify(result));
+  } catch (err) {
+    next(err);
+  }
 };
 
 exports.updatePost = (req, res, next) => {
