@@ -1,9 +1,15 @@
 module.exports = result => {
-  return {
-    id: result._id,
-    title: result.title,
-    content: result.content,
-    author: result.author,
-    createdDate: result.createdDate
-  };
+  function formatter(data) {
+    return {
+      id: data._id,
+      title: data.title,
+      content: data.content,
+      author: data.author,
+      createdDate: data.createdDate
+    };
+  }
+  if (!Array.isArray(result)) {
+    return formatter(result);
+  }
+  return result.map(data => formatter(data));
 };
