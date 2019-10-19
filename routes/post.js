@@ -10,11 +10,12 @@ const {
 } = require("../controllers/post");
 const postIdValidation = require("../middlewares/postIdValidation");
 const postBodyValidation = require("../middlewares/postBodyValidation");
+const queryValidation = require("../middlewares/multiplePostsQuery");
 //Get single post by id
 router.get("/post/:id", postIdValidation, getPost);
 
 //Get multiple post
-router.get("/posts/:page", getPosts);
+router.get("/posts", queryValidation, getPosts);
 
 //add post
 router.post("/post", postBodyValidation, addPost);
