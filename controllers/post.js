@@ -48,8 +48,16 @@ exports.addPost = async (req, res, next) => {
   }
 };
 
-exports.deletePost = (req, res, next) => {
-  res.send("delete post");
+exports.deletePost = async (req, res, next) => {
+  try {
+    const result = await Post.findByIdAndDelete(req.postId);
+    if (!result) {
+      return next(new BlogError(ErrorMessages.postNotFound, 404));
+    }
+    res.status(200).send(postResultify(result));
+  } catch (err) {
+    next(err);
+  }
 };
 
 exports.updatePost = (req, res, next) => {
