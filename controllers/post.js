@@ -17,8 +17,19 @@ exports.getPost = async (req, res, next) => {
   }
 };
 
-exports.getPosts = (req, res, next) => {
-  res.send("get multiple posts");
+exports.getPosts = async (req, res, next) => {
+  const { limit = settings.defaultLimit, skip = 0 } = req;
+  try {
+    const posts = await Post.find({})
+      .limit(limit)
+      .skip(skip);
+    if (!posts || !Array.isArray(posts) || posts.length < 1) {
+      return next(new BlogError(ErrorMessages.postNotFound, 404));
+    }
+    res.send(postResultify(posts));
+  } catch (err) {
+    next(err);
+  }
 };
 
 exports.addPost = async (req, res, next) => {
