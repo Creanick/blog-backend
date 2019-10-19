@@ -60,8 +60,23 @@ exports.deletePost = async (req, res, next) => {
   }
 };
 
-exports.updatePost = (req, res, next) => {
-  res.send("update post");
+exports.updatePost = async (req, res, next) => {
+  try {
+    const post = await Post.findById(req.postId);
+    if (!post) {
+      return next(new BlogError(ErrorMessages.postNotFound, 404));
+    }
+    const properties = ["title", "content", "author"];
+    for (let key of properties) {
+      if (key in req.body) {
+        post[key] = req.body[key];
+      }
+    }
+    const result = await post.save();
+    res.status(200).send(postResultify(result));
+  } catch (err) {
+    next(err);
+  }
 };
 
 exports.searchPosts = (req, res, next) => {
