@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { defaultAuthor } = require("../config");
+const { defaultAuthor } = require("../settings");
 const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 

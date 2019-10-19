@@ -4,7 +4,7 @@ const postResultify = require("../utils/postResultify");
 const ObjectId = mongoose.Types.ObjectId;
 const BlogError = require("../utils/BlogError");
 const ErrorMessages = require("../ErrorMessages");
-const { defaultAuthor } = require("../config");
+const settings = require("../settings");
 exports.getPost = async (req, res, next) => {
   try {
     const post = await Post.findById(ObjectId(req.postId));
@@ -17,12 +17,23 @@ exports.getPost = async (req, res, next) => {
   }
 };
 
-exports.getPosts = (req, res, next) => {
-  res.send("get multiple posts");
+exports.getPosts = async (req, res, next) => {
+  const { limit = settings.defaultLimit, skip = 0 } = req;
+  try {
+    const posts = await Post.find({})
+      .limit(limit)
+      .skip(skip);
+    if (!posts || !Array.isArray(posts) || posts.length < 1) {
+      return next(new BlogError(ErrorMessages.postNotFound, 404));
+    }
+    res.send(postResultify(posts));
+  } catch (err) {
+    next(err);
+  }
 };
 
 exports.addPost = async (req, res, next) => {
-  const { title, content, author = defaultAuthor } = req.body;
+  const { title, content, author = settings.defaultAuthor } = req.body;
   const post = new Post({
     _id: ObjectId(),
     title,
