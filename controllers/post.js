@@ -64,6 +64,19 @@ exports.updatePost = (req, res, next) => {
   res.send("update post");
 };
 
-exports.searchPosts = (req, res, next) => {
-  res.send("searching posts");
+exports.searchPosts = async (req, res, next) => {
+  try {
+    const query = req.query.q;
+    Post.find({ $text: { $search: query } }).exec((err, posts) => {
+      if (err) {
+        return next(err);
+      }
+      if (posts.length < 1) {
+        return next(new BlogError(ErrorMessages.postNotFound, 404));
+      }
+      res.status(200).send(postResultify(posts));
+    });
+  } catch (err) {
+    next(err);
+  }
 };
