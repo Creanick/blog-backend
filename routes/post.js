@@ -10,6 +10,7 @@ const {
 } = require("../controllers/post");
 const postIdValidation = require("../middlewares/postIdValidation");
 const postBodyValidation = require("../middlewares/postBodyValidation");
+const updateBodyValidation = require("../middlewares/updateBodyValidation.js");
 const queryValidation = require("../middlewares/multiplePostsQuery");
 const searchQueryValidation = require("../middlewares/searchQueryValidation");
 //Get single post by id
@@ -25,7 +26,7 @@ router.post("/post", postBodyValidation, addPost);
 router.delete("/post/:id", postIdValidation, deletePost);
 
 //update post by id
-router.patch("/post/:id", updatePost);
+router.patch("/post/:id", postIdValidation, updateBodyValidation, updatePost);
 
 //search posts by search query
 router.get("/search", searchQueryValidation, searchPosts);
