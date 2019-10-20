@@ -11,6 +11,7 @@ const {
 const postIdValidation = require("../middlewares/postIdValidation");
 const postBodyValidation = require("../middlewares/postBodyValidation");
 const queryValidation = require("../middlewares/multiplePostsQuery");
+const searchQueryValidation = require("../middlewares/searchQueryValidation");
 //Get single post by id
 router.get("/post/:id", postIdValidation, getPost);
 
@@ -27,5 +28,5 @@ router.delete("/post/:id", postIdValidation, deletePost);
 router.patch("/post/:id", updatePost);
 
 //search posts by search query
-router.get("/search", searchPosts);
+router.get("/search", searchQueryValidation, searchPosts);
 module.exports = router;
